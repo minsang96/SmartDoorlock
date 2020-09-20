@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Locktitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="원터치 잠금해제"
+            android:layout_marginLeft = "20dp"
+            android:layout_marginTop = "20dp"
+            android:textSize = "30sp"
+            android:textStyle="bold"
+            android:textColor="#3F51B5"/>
+
+        <TextView
+            android:id="@+id/Lockexplain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="한번의 터치로 쉽게 도어락을 제어할 수 있습니다."
+            android:layout_marginLeft = "20dp"
+            android:layout_marginTop = "20dp"
+            android:textColor="#000000"/>
+
+        <Button
+            android:id="@+id/Lockbutton"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginHorizontal="60dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/lock" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="30dp"
+            android:background="#000000" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</LinearLayout>
