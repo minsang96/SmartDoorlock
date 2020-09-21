@@ -5,7 +5,7 @@ public class Itemform {
     private int imageNumber;
     private String txt;
 
-    public Itemform(String id1, int imageNumber1, String txt){//new생성자를 통해서 생성자가 만들어진다.
+    public Itemform(String id1, int imageNumber1, String txt){// new생성자를 통해서 생성자가 만들어진다.
         this.id = id1;
         this.imageNumber = imageNumber1;
         this.txt = txt;

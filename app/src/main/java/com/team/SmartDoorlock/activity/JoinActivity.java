@@ -26,7 +26,7 @@ public class JoinActivity extends AppCompatActivity {
     private TextView caution;
     private EditText did;
     private EditText uid;
-    private EditText password;
+    private EditText pwd;
     private EditText pnumber;
     private EditText relation;
     private EditText fimage;
@@ -41,7 +41,7 @@ public class JoinActivity extends AppCompatActivity {
         title = (TextView) findViewById(R.id.title);
         caution = (TextView) findViewById(R.id.caution);
         did = (EditText) findViewById((R.id.Did));
-        password = (EditText) findViewById((R.id.password));
+        pwd = (EditText) findViewById((R.id.pwd));
         uid = (EditText) findViewById(R.id.UID);
         pnumber = (EditText) findViewById(R.id.Pnumber);
         relation = (EditText) findViewById(R.id.Relation);
@@ -60,14 +60,14 @@ public class JoinActivity extends AppCompatActivity {
     private void attemptJoin() {
         did.setError(null);
         uid.setError(null);
-        password.setError(null);
+        pwd.setError(null);
         pnumber.setError(null);
         relation.setError(null);
         fimage.setError(null);
 
         String did_string = did.getText().toString();
         String uid_string = uid.getText().toString();
-        String password_string = uid.getText().toString();
+        String pwd_string = uid.getText().toString();
         String pnumber_string = pnumber.getText().toString();
         String relation_string = relation.getText().toString();
         String fimage_string = fimage.getText().toString();
@@ -94,9 +94,9 @@ public class JoinActivity extends AppCompatActivity {
         }
 
         // 패스워드의 유효성 검사
-        if (password_string.isEmpty()) {
-            password.setError("비밀번호를 입력해주세요.");
-            focusView = password;
+        if (pwd_string.isEmpty()) {
+            pwd.setError("비밀번호를 입력해주세요.");
+            focusView = pwd;
             cancel = true;
         }
 
@@ -124,7 +124,7 @@ public class JoinActivity extends AppCompatActivity {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            startJoin(new JoinData(did_string, uid_string, password_string, pnumber_string, relation_string, fimage_string));
+            startJoin(new JoinData(did_string, uid_string, pwd_string, pnumber_string, relation_string, fimage_string));
         }
     }
 
