@@ -6,11 +6,11 @@ public class LoginData {
     @SerializedName("Uid")
     String Uid;
 
-    @SerializedName("Password")
-    String Password;
+    @SerializedName("Pwd")
+    String Pwd;
 
-    public LoginData(String Uid, String Password) {
+    public LoginData(String Uid, String Pwd) {
         this.Uid = Uid;
-        this.Password = Password;
+        this.Pwd = Pwd;
     }
 }

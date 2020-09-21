@@ -24,7 +24,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     private TextView logintitle;
     private EditText uid;
-    private EditText password;
+    private EditText pwd;
     private Button loginbutton;
     private Button joinbutton;
     private Button faqbutton;
@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
 
         logintitle = (TextView) findViewById(R.id.logintitle);
         uid = (EditText) findViewById((R.id.Uid));
-        password = (EditText) findViewById(R.id.Password);
+        pwd = (EditText) findViewById(R.id.Pwd);
         loginbutton = (Button) findViewById(R.id.signinbutton);
         joinbutton = (Button) findViewById(R.id.joinbutton);
         faqbutton = (Button) findViewById(R.id.faqbutton);
@@ -46,9 +46,8 @@ public class LoginActivity extends AppCompatActivity {
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //attemptLogin();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                attemptLogin();
+
             }
         });
 
@@ -71,10 +70,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private void attemptLogin() {
         uid.setError(null);
-        password.setError(null);
+        pwd.setError(null);
 
         String uid_string = uid.getText().toString();
-        String password_string = password.getText().toString();
+        String pwd_string = pwd.getText().toString();
         boolean cancel = false;
         View focusView = null;
 
@@ -86,16 +85,16 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         // 패스워드의 유효성 검사
-        if (password_string.isEmpty()) {
-            password.setError("이름을 입력해주세요.");
-            focusView = password;
+        if (pwd_string.isEmpty()) {
+            pwd.setError("이름을 입력해주세요.");
+            focusView = pwd;
             cancel = true;
         }
 
         if (cancel) {
             focusView.requestFocus();
         } else {
-            startLogin(new LoginData(uid_string, password_string));
+            startLogin(new LoginData(uid_string, pwd_string));
         }
     }
 
@@ -105,6 +104,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 LoginResponse result = response.body();
                 Toast.makeText(LoginActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+                if(result.getCode()==200) {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                }
             }
 
             @Override

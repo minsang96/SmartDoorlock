@@ -38,14 +38,16 @@
                 android:text="제품 코드 : "
                 android:textSize = "20dp"/>
 
-            <TextView
+            <EditText
                 android:id="@+id/Did"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:clickable="false"
-                android:text="제품 코드 불러오기"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="제품 코드 "
                 android:textSize = "20dp"/>
+
         </LinearLayout>
 
         <LinearLayout
