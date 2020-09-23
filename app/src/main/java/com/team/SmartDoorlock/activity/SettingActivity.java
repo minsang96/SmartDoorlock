@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.team.SmartDoorlock.R;
 
-public class LoginFAQActivity extends AppCompatActivity {
+public class SettingActivity extends AppCompatActivity {
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_loginfaq);
+        setContentView(R.layout.activity_setting);
     }
 }

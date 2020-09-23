@@ -1,16 +1,18 @@
 package com.team.SmartDoorlock.recyclerview;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.team.SmartDoorlock.R;
+import com.team.SmartDoorlock.activity.SettingActivity;
+import com.team.SmartDoorlock.activity.VisitorRecordActivity;
 
 import java.util.ArrayList;
 
@@ -20,11 +22,9 @@ import java.util.ArrayList;
 
 public class WrittingAdapter extends RecyclerView.Adapter<WrittingAdapter.MyViewholder> {
 
-
-
     private Activity activity;
     private ArrayList<Itemform> datalist;
-
+    private Intent intent;
 
     //getItemCount, onCreateViewHolder, MyViewHolder, onBindViewholder 순으로 들어오게 된다.
     // 뷰홀더에서 초기세팅해주고 바인드뷰홀더에서 셋텍스트해주는 값이 최종적으로 화면에 출력되는 값
@@ -67,7 +67,35 @@ public class WrittingAdapter extends RecyclerView.Adapter<WrittingAdapter.MyView
             itemview.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(activity, "c",Toast.LENGTH_LONG).show();//각 아이템을 누르면 토스트 메세지가 뜨도록
+                    if(personalId.getText()=="설정"){
+                        intent = new Intent(v.getContext(), SettingActivity.class);
+                        v.getContext().startActivity(intent);
+                    }
+
+                    /*else if(personalId.getText()=="카메라 연결"){
+                        intent = new Intent(v.getContext(), SettingActivity.class);
+                        v.getContext().startActivity(intent);
+                    }*/
+
+                    else if(personalId.getText()=="방문자 기록"){
+                        intent = new Intent(v.getContext(), VisitorRecordActivity.class);
+                        v.getContext().startActivity(intent);
+                    }
+
+                    else if (personalId.getText()=="문의하기"){
+                        Intent email = new Intent(Intent.ACTION_SEND);
+                        email.setType("plain/text");
+                        String[] address = {"dbalstkd89@naver.com"};
+                        email.putExtra(Intent.EXTRA_EMAIL, address);
+                        email.putExtra(Intent.EXTRA_SUBJECT, "제목을 입력해 주세요.");
+                        email.putExtra(Intent.EXTRA_TEXT, "제품코드 :               연락처 :               사유 : ");
+                        activity.startActivity(email);
+                    }
+
+                    else if(personalId.getText()=="로그아웃"){
+                        intent = new Intent(v.getContext(), SettingActivity.class);
+                        v.getContext().startActivity(intent);
+                    }
                 }
             });
 

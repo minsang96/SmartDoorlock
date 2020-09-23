@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.team.SmartDoorlock.R;
 import com.team.SmartDoorlock.data.LoginData;
 import com.team.SmartDoorlock.data.LoginResponse;
+import com.team.SmartDoorlock.etc.BackPressHandler;
 import com.team.SmartDoorlock.network.RetrofitClient;
 import com.team.SmartDoorlock.network.ServiceApi;
 
@@ -29,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button joinbutton;
     private Button faqbutton;
     private ServiceApi service;
+
+    private BackPressHandler backPressHandler = new BackPressHandler(this);
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
         faqbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), FAQActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LoginFAQActivity.class);
                 startActivity(intent);
             }
         });
@@ -107,6 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(result.getCode()==200) {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             }
 
@@ -116,5 +120,9 @@ public class LoginActivity extends AppCompatActivity {
                 Log.e("로그인 에러 발생", t.getMessage());
             }
         });
+    }
+
+    public void onBackPressed() {
+        backPressHandler.onBackPressed("뒤로가기를 한번 더 누르면 종료합니다.", 3000);
     }
 }

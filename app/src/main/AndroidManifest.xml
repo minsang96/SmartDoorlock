@@ -20,6 +20,9 @@
         <activity android:name="com.team.SmartDoorlock.activity.JoinActivity"/>
         <activity android:name="com.team.SmartDoorlock.activity.FAQActivity"/>
         <activity android:name="com.team.SmartDoorlock.activity.MainActivity"/>
+        <activity android:name="com.team.SmartDoorlock.activity.LoginFAQActivity"/>
+        <activity android:name="com.team.SmartDoorlock.activity.SettingActivity"/>
+        <activity android:name="com.team.SmartDoorlock.activity.VisitorRecordActivity"/>
     </application>
 
 </manifest>
