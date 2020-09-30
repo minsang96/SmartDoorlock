@@ -17,17 +17,22 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class VisitorRecordActivity extends AppCompatActivity {
-Button readfile;
-TextView recordtext;
+    Button readfile;
+    TextView recordtext;
+
     private static final String FILE_NAME="testdirectory.txt";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visitor_record);
 
+
+
         readfile=(Button)findViewById(R.id.readfile);
         recordtext=(TextView)findViewById(R.id.text);
         recordtext.setMovementMethod(new ScrollingMovementMethod());
+
+
 
 
 

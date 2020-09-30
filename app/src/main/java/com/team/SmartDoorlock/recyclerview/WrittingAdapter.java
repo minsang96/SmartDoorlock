@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.team.SmartDoorlock.R;
+import com.team.SmartDoorlock.activity.CameraActivity;
+import com.team.SmartDoorlock.activity.LoginActivity;
+import com.team.SmartDoorlock.activity.MainActivity;
 import com.team.SmartDoorlock.activity.SettingActivity;
 import com.team.SmartDoorlock.activity.VisitorRecordActivity;
 
@@ -72,10 +75,10 @@ public class WrittingAdapter extends RecyclerView.Adapter<WrittingAdapter.MyView
                         v.getContext().startActivity(intent);
                     }
 
-                    /*else if(personalId.getText()=="카메라 연결"){
-                        intent = new Intent(v.getContext(), SettingActivity.class);
+                    else if(personalId.getText()=="카메라 연결"){
+                        intent = new Intent(v.getContext(), CameraActivity.class);
                         v.getContext().startActivity(intent);
-                    }*/
+                    }
 
                     else if(personalId.getText()=="방문자 기록"){
                         intent = new Intent(v.getContext(), VisitorRecordActivity.class);
@@ -93,8 +96,9 @@ public class WrittingAdapter extends RecyclerView.Adapter<WrittingAdapter.MyView
                     }
 
                     else if(personalId.getText()=="로그아웃"){
-                        intent = new Intent(v.getContext(), SettingActivity.class);
+                        intent = new Intent(v.getContext(), LoginActivity.class);
                         v.getContext().startActivity(intent);
+                        activity.finish();
                     }
                 }
             });

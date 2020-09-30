@@ -2,7 +2,9 @@ package com.team.SmartDoorlock.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +12,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
 import com.team.SmartDoorlock.R;
 import com.team.SmartDoorlock.data.JoinData;
 import com.team.SmartDoorlock.data.JoinResponse;
@@ -29,7 +38,8 @@ public class JoinActivity extends AppCompatActivity {
     private EditText pwd;
     private EditText pnumber;
     private EditText relation;
-    private EditText fimage;
+    private Button capturebutton;
+    private Button imageloadbutton;
     private Button signinbutton;
     private ServiceApi service;
 
@@ -45,14 +55,31 @@ public class JoinActivity extends AppCompatActivity {
         uid = (EditText) findViewById(R.id.UID);
         pnumber = (EditText) findViewById(R.id.Pnumber);
         relation = (EditText) findViewById(R.id.Relation);
-        fimage = (EditText) findViewById(R.id.Fimage);
         signinbutton = (Button) findViewById(R.id.signinbutton);
+        capturebutton = (Button) findViewById(R.id.Capturebutton);
+        imageloadbutton = (Button) findViewById(R.id.Imageloadbutton);
         service = RetrofitClient.getClient().create(ServiceApi.class);
 
         signinbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptJoin();
+            }
+        });
+
+        capturebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivity(intent);
+            }
+        });
+
+        imageloadbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
             }
         });
     }
@@ -63,14 +90,12 @@ public class JoinActivity extends AppCompatActivity {
         pwd.setError(null);
         pnumber.setError(null);
         relation.setError(null);
-        fimage.setError(null);
 
         String did_string = did.getText().toString();
         String uid_string = uid.getText().toString();
         String pwd_string = uid.getText().toString();
         String pnumber_string = pnumber.getText().toString();
         String relation_string = relation.getText().toString();
-        String fimage_string = fimage.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -114,17 +139,10 @@ public class JoinActivity extends AppCompatActivity {
             cancel = true;
         }
 
-        // 안면인식의 유효성 검사
-        if (fimage_string.isEmpty()) {
-            fimage.setError("일단 아무 값이나 때려넣어 주세요.");
-            focusView = fimage;
-            cancel = true;
-        }
-
         if (cancel) {
             focusView.requestFocus();
         } else {
-            startJoin(new JoinData(did_string, uid_string, pwd_string, pnumber_string, relation_string, fimage_string));
+            startJoin(new JoinData(did_string, uid_string, pwd_string, pnumber_string, relation_string));
         }
     }
 

@@ -18,15 +18,11 @@ public class JoinData {
     @SerializedName("Relation")
     private String Relation;
 
-    @SerializedName("Fimage")
-    private String Fimage;
-
-    public JoinData(String Did, String Uid, String Pwd, String Pnumber, String Relation, String Fimage) {
+    public JoinData(String Did, String Uid, String Pwd, String Pnumber, String Relation) {
         this.Did = Did;
         this.Uid = Uid;
         this.Pwd = Pwd;
         this.Pnumber = Pnumber;
         this.Relation = Relation;
-        this.Fimage = Fimage;
     }
 }

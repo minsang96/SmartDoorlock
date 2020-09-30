@@ -15,9 +15,12 @@ import com.team.SmartDoorlock.etc.BackPressHandler;
 import com.team.SmartDoorlock.recyclerview.Itemform;
 import com.team.SmartDoorlock.recyclerview.WrittingAdapter;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -55,6 +58,34 @@ public class MainActivity extends AppCompatActivity {
                 new DividerItemDecoration(recyclerView.getContext(),new LinearLayoutManager(this).getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
 
+        FileInputStream fis=null;
+
+        try {
+            fis = openFileInput(FILE_NAME);
+            InputStreamReader isr=new InputStreamReader(fis);
+            BufferedReader br =new BufferedReader(isr);
+            StringBuilder sb=new StringBuilder();
+            String text;
+            while((text=br.readLine())!=null){
+                sb.append(text).append("\n");
+            }
+            TextRecord=sb.toString();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if(fis!=null){
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
+
         Lockbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 // nowDate 변수에 값을 저장한다.
                 String formatDate = sdfNow.format(date);
-                TextRecord=TextRecord+formatDate+"  이름";
+                TextRecord=TextRecord+formatDate+"  이름"+"\n";
 
                 try {
                     fos=openFileOutput(FILE_NAME,MODE_PRIVATE);
